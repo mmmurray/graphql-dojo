@@ -1,8 +1,25 @@
 type Query {
-  books: [Book]
+  trams: [Tram]
 }
 
-type Book {
-  title: String,
-  author: String
+type Tram {
+  id: ID
+  line: String
+  station: String
+  direction: Direction
+  carriages: [Carriage]
+}
+
+type Carriage {
+  size: CarriageSize
+}
+
+enum Direction {
+  Incoming
+  Outgoing
+}
+
+enum CarriageSize {
+  Single
+  Double
 }
