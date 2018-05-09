@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
 import Tram from './tram';
 import glamorous from 'glamorous';
+import StopInput from './stop-input';
 
 const ContainingDiv = glamorous.div({
   padding: '8px 16px',
@@ -27,6 +28,7 @@ class App extends Component {
           titleStyle={{ color: 'black' }}
         />
         <ContainingDiv>
+          <StopInput />
           {trams.map(({ id, ...props }) => <Tram key={id} {...props} />)}
         </ContainingDiv>
       </MuiThemeProvider>
