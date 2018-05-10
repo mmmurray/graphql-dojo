@@ -1,12 +1,10 @@
 # GraphQL Dojo
 
-In this Dojo we will be building a Metrolink live departures using GraphQL and React.
+In this Dojo we will be building a Metrolink live departures app using GraphQL and React.
 
 ![](docs/app-screenshot.png)
 
-## Exercises
-
-### Exercise 1 - Designing a schema
+## 1 - Designing a schema
 
 Designing the schema for a GraphQL API can be a tricky job. You need to consider all the different use cases of the API to best represent these as types and fields.
 
@@ -34,7 +32,7 @@ At the top of the file are a list of requirements written in plain english. Usin
 
 * Think about which fields can never be `null` and make this explicit by adding a `!` after the field type.
 
-### Exercise 2 - Creating resolvers
+## 2 - Creating resolvers
 
 ```bash
 git checkout ex2
@@ -45,7 +43,7 @@ git checkout ex2
 > * `src/server/resolvers.js`
 > * `test/exercise-2.test.js`
 
-### Exercise 3 - Combining multiple APIs
+## 3 - Combining multiple APIs
 
 ```bash
 git checkout ex3
@@ -56,7 +54,7 @@ git checkout ex3
 > * `src/server/resolvers.js`
 > * `test/exercise-3.test.js`
 
-### Exercise 4 - Integrate with the React app
+## 4 - Integrate with the React app
 
 ```bash
 git checkout ex4
