@@ -36,15 +36,6 @@ type Station {
 
   # Get all of the departing trams from this station.
   trams: [Tram]!
-
-  # The location of the station.
-  location: Location
-}
-
-# A physical location in the world.
-type Location {
-  lat: Float
-  lon: Float
 }
 
 # A Metrolink tram due to arrive at a station.
