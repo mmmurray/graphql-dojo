@@ -1,0 +1,20 @@
+type Query {
+  station(name: String): Station
+}
+
+type Station {
+  name: String
+  trams: [Tram]
+}
+
+type Tram {
+  id: ID
+  destination: Station
+  due: Int
+  size: TramSize
+}
+
+enum TramSize {
+  Single
+  Double
+}
