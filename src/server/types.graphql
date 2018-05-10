@@ -3,7 +3,9 @@
 #
 # Requirements for the schema:
 #
-# - I can get a station by name.
+# - I can get the names of all the stations.
+#
+# - I can get a particular station by name.
 #
 # - For a particular station:
 #    - I can get the name of the station.
