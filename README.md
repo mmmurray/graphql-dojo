@@ -4,7 +4,21 @@ In this Dojo we will be building a Metrolink live departures app using GraphQL a
 
 ![](docs/app-screenshot.png)
 
-## 1 - Designing a schema
+## Setup Instructions
+
+```bash
+git clone git@github.com:mmmurray/graphql-dojo.git
+
+cd graphql-dojo
+
+npm install
+
+npm start
+```
+
+If all is well, you should be able to view the React app at http://localhost:3000/ and the GraphiQL tool at http://localhost:3001/graphiql
+
+## Exercise 1 - Designing a schema
 
 Designing the schema for a GraphQL API can be a tricky job. You need to consider all the different use cases of the API to best represent these as types and fields.
 
@@ -32,29 +46,58 @@ At the top of the file are a list of requirements written in plain english. Usin
 
 * Think about which fields can never be `null` and make this explicit by adding a `!` after the field type.
 
-## 2 - Creating resolvers
+## Exercise 2 - Creating resolvers
+
+Now that we have defined our schema, we need to write some functions to fetch the Metrolink data and transform it into the right shape. These functions are called resolvers, they can return a promise, and they can return the values for one or more fields.
+
+#### What you need to do 👈
 
 ```bash
 git checkout ex2
+
+npm test
 ```
+
+There are several tests in `test/exercise-2.test.js` which are failing. Your task for this exercise is simply to make all of the tests pass. You do not need to modify the tests at all. Each test sends a particular query string to the API and expects the resulting JSON object to be a particular value.
+
+To fetch the tram data from the TFGM API, use the `fetchTramData` function in the `src/server/fetchers.js` file. You can look at mock API response by opening `mock-apis/tfgm/data/metrolinks.json`.
+
+How the TFGM API works:
+
+* Each item in the `value` array represents a particular station, identified by the `StationLocation` property.
+* There are multiple objects for each station so they will need to be merged together.
+* Each object holds the departure time for up to 4 trams from that station. The first tram consists of the `Dest0`, `Carriages0`, `Status0`, and `Wait0` properties. The second tram has these same properties but with the suffix `1` and so on.
+* The `Wait0` property is the number of minutes until the first tram arrives at this station.
+* The `Carriages0` property is the length of the first tram to arrive at this station. It can either be `Single` or `Double`.
+
+As you can see, this API is absolutely horrible any you will need to do some rather heavy transformations to get the raw data to match up with the schema. If you don't feel like doing this transformation yourself, look at the helper function in `src/server/helpers/transform-tram-data.js`, this should make the solution much easier.
+
+#### Tips 🎓
+
+* Run a single test by changing `test` to `test.only`. Remember to remove this to run all the tests again.
+* You don't have to provide a value for all of the fields initially, just those that are specified in the query.
 
 > ⚠️ The only files you should need to modify for this exercise are:
 >
 > * `src/server/resolvers.js`
-> * `test/exercise-2.test.js`
 
-## 3 - Combining multiple APIs
+## Exercise 3 - Combining multiple APIs
+
+#### What you need to do 👈
 
 ```bash
 git checkout ex3
+
+npm test
 ```
 
 > ⚠️ The only files you should need to modify for this exercise are:
 >
 > * `src/server/resolvers.js`
-> * `test/exercise-3.test.js`
 
-## 4 - Integrate with the React app
+## Exercise 4 - Integrate with the React app
+
+#### What you need to do 👈
 
 ```bash
 git checkout ex4
