@@ -2,7 +2,7 @@ import { Img } from 'glamorous';
 import { Paper } from 'material-ui';
 import React from 'react';
 
-const tramImage = <Img height="32px" marginLeft="4px" src="/tram.png" />;
+const range = length => new Array(length).fill().map((_, i) => i);
 
 const Tram = ({ destination, size, due }) => (
   <Paper
@@ -17,7 +17,9 @@ const Tram = ({ destination, size, due }) => (
     <span>
       {destination} - {due} minutes
     </span>
-    <span>{Array(size).fill(tramImage)}</span>
+    <span>
+      {range(size).map(index => <Img key={index} height="32px" marginLeft="4px" src="/tram.png" />)}
+    </span>
   </Paper>
 );
 

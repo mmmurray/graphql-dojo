@@ -9,7 +9,7 @@ const createStation = data => {
       trams.push({
         destination: { name: data[`Dest${i}`] },
         due: Number(data[`Wait${i}`]),
-        size: data[`Carriages${i}`],
+        size: data[`Carriages${i}`] === 'Double' ? 2 : 1,
       });
     }
   }

@@ -1,16 +1,9 @@
 import { gql } from 'apollo-boost';
+import { Div } from 'glamorous';
+import CircularProgress from 'material-ui/CircularProgress';
 import React from 'react';
 import { Query } from 'react-apollo';
 import Departures from './departures';
-import CircularProgress from 'material-ui/CircularProgress';
-import { Div } from 'glamorous';
-import GoogleMapReact from 'google-map-react';
-
-// const trams = [
-//   { id: '1', destination: 'MediaCityUK', size: 1, due: 3 },
-//   { id: '2', destination: 'Cornbrook', size: 2, due: 12 },
-//   { id: '3', destination: 'Eccles', size: 1, due: 25 },
-// ];
 
 const createQuery = station => gql`
   query {
@@ -42,27 +35,22 @@ const DeparturesLoader = ({ station }) =>
           );
         }
 
-        if (error) return <div>Error :(</div>;
+        if (error) {
+          return <div>Something went badly wrong</div>;
+        }
 
         const trams = data.station.trams.map(tram => ({
           due: tram.due,
           destination: tram.destination.name,
-          size: tram.size === 'Double' ? 2 : 1,
+          size: tram.size,
         }));
 
         return (
-          <div>
-            <Departures trams={trams} />
-            <Div widht="100px" height="300px" marginTop="16px">
-              <GoogleMapReact
-                center={{
-                  lat: data.station.location.lat,
-                  lng: data.station.location.lon,
-                }}
-                defaultZoom={17}
-              />
-            </Div>
-          </div>
+          <Departures
+            trams={trams}
+            lat={data.station.location.lat}
+            lon={data.station.location.lon}
+          />
         );
       }}
     </Query>

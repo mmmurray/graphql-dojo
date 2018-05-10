@@ -4,7 +4,7 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import DeparturesLoader from './components/departures-loader';
 import Layout from './components/layout';
-import StopInputLoader from './components/stop-input-loader';
+import StationInputLoader from './components/station-input-loader';
 
 const client = new ApolloClient({ uri: 'http://localhost:3001/graphql' });
 
@@ -16,7 +16,7 @@ class App extends React.Component {
       <ApolloProvider client={client}>
         <MuiThemeProvider>
           <Layout>
-            <StopInputLoader onSelect={station => this.setState({ station })} />
+            <StationInputLoader onSelect={station => this.setState({ station })} />
             <DeparturesLoader station={this.state.station} />
           </Layout>
         </MuiThemeProvider>

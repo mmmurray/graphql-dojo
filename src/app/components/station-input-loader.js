@@ -1,11 +1,9 @@
 import { gql } from 'apollo-boost';
 import React from 'react';
 import { Query } from 'react-apollo';
-import StopInput from './stop-input';
+import StationInput from './station-input';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Div } from 'glamorous';
-
-// const stops = ['MediaCityUk', 'Cornbrook', 'Eccles'];
 
 const STATIONS_QUERY = gql`
   query {
@@ -15,7 +13,7 @@ const STATIONS_QUERY = gql`
   }
 `;
 
-const StopInputLoader = ({ onSelect }) => (
+const StationInputLoader = ({ onSelect }) => (
   <Query query={STATIONS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) {
@@ -26,13 +24,15 @@ const StopInputLoader = ({ onSelect }) => (
         );
       }
 
-      if (error) return <div>Error :(</div>;
+      if (error) {
+        return <div>Something went badly wrong</div>;
+      }
 
-      const stops = data.stations.map(({ name }) => name);
+      const stations = data.stations.map(({ name }) => name);
 
-      return <StopInput stops={stops} onSelect={onSelect} />;
+      return <StationInput stations={stations} onSelect={onSelect} />;
     }}
   </Query>
 );
 
-export default StopInputLoader;
+export default StationInputLoader;
