@@ -1,8 +1,15 @@
 import React from 'react';
 import Tram from './tram';
+import { Ul } from 'glamorous';
 
 const Departures = ({ trams }) => (
-  <div>{trams.map(({ id, ...props }) => <Tram key={id} {...props} />)}</div>
+  <Ul listStyle="none" overflowY="auto">
+    {trams.map(tram => (
+      <li>
+        <Tram {...tram} />
+      </li>
+    ))}
+  </Ul>
 );
 
 export default Departures;
