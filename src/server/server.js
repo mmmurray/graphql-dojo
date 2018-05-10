@@ -9,7 +9,7 @@ import resolvers from './resolvers';
 // Put together a schema
 const schema = makeExecutableSchema({
   typeDefs: readFileSync(join(__dirname, './schema.graphql'), 'utf-8'),
-  resolvers
+  resolvers,
 });
 
 // Initialize the app
