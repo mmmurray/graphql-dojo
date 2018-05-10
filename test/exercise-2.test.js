@@ -46,7 +46,7 @@ test('can get the name of every station', () => {
 
 test('can get the time trams are due to depart from a station', () => {
   const query = `{
-      station(name: "Piccadilly") {
+      station(name: "MediaCityUK") {
         trams {
           due
         }
@@ -56,7 +56,7 @@ test('can get the time trams are due to depart from a station', () => {
   const expected = {
     data: {
       station: {
-        trams: [{ due: 3 }, { due: 6 }, { due: 6 }, { due: 7 }, { due: 9 }, { due: 9 }],
+        trams: [{ due: 3 }, { due: 15 }, { due: 27 }],
       },
     },
   };
