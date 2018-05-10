@@ -20,12 +20,13 @@
 # }
 
 type Query {
+  stations: [Station]!
   station(name: String): Station
 }
 
 type Station {
   name: String
-  trams: [Tram]
+  trams: [Tram]!
   location: Location
 }
 

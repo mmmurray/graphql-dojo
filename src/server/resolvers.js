@@ -1,4 +1,4 @@
-import { groupBy, uniqBy, isEqual, sortBy } from 'lodash/fp';
+import { groupBy, uniqBy, isEqual, sortBy, mapValues, flatten, unzipWith } from 'lodash/fp';
 import { fetchTramData, fetchNaptanData } from './fetchers';
 
 const createStation = data => {
@@ -17,19 +17,31 @@ const createStation = data => {
   return {
     name: data.StationLocation,
     trams,
-    _AtcoCode: data.AtcoCode,
+    AtcoCode: data.AtcoCode,
   };
 };
 
 const getStations = async () => {
   const tramData = await fetchTramData();
   const stations = tramData.value.map(createStation);
+  const groupedStations = groupBy('name', stations);
 
-  return groupBy('name', stations);
+  return mapValues(
+    station =>
+      station.reduce((acc, s) => ({ AtcoCode: s.AtcoCode, trams: [...acc.trams, ...s.trams] }), {
+        trams: [],
+      }),
+    groupedStations,
+  );
 };
 
 const resolvers = {
   Query: {
+    stations: async () => {
+      const stations = await getStations();
+
+      return Object.keys(stations).map(name => ({ name }));
+    },
     station: (root, { name }) => {
       return { name };
     },
@@ -49,9 +61,9 @@ const resolvers = {
     },
     location: async root => {
       const stations = await getStations();
-      const station = stations[root.name][0];
+      const station = stations[root.name];
       const stops = await fetchNaptanData();
-      const stop = stops.find(stop => stop.ATCOCode === station._AtcoCode);
+      const stop = stops.find(stop => stop.ATCOCode === station.AtcoCode);
 
       return {
         lat: Number(stop.Longitude),
