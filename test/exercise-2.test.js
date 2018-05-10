@@ -19,8 +19,8 @@ describe('exercise 2', () => {
       data: {
         station: {
           location: {
-            lat: -2.2973038584,
-            lon: 53.4720641271,
+            lat: 53.4720641271,
+            lon: -2.2973038584,
           },
         },
       },

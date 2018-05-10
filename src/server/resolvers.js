@@ -66,8 +66,8 @@ const resolvers = {
       const stop = stops.find(stop => stop.ATCOCode === station.AtcoCode);
 
       return {
-        lat: Number(stop.Longitude),
-        lon: Number(stop.Latitude),
+        lat: Number(stop.Latitude),
+        lon: Number(stop.Longitude),
       };
     },
   },
