@@ -9,6 +9,7 @@
     "start:app": "react-scripts start",
     "start:server": "nodemon -e js,graphql --watch lib/ ./lib/server.js",
     "start:server-watch": "npm run build:server -- --watch --skip-initial-build",
+    "start:mock-naptan": "node ./mock-apis/naptan/server.js",
     "start:mock-tfgm": "node ./mock-apis/tfgm/server.js",
     "test": "jest --watch"
   },
