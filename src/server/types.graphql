@@ -17,35 +17,7 @@
 #    - I can get the name of the destination station.
 
 # All schemas must define a Query type. GraphQL will use this as the entry point to your schema.
-# type Query {
-#
-# }
 
 type Query {
-  # Get all of the Metrolink stations.
-  stations: [Station]!
 
-  # Get a Metrolink station by name.
-  station(name: String): Station
-}
-
-# The place where trams stop.
-type Station {
-  # The name of the station.
-  name: String
-
-  # Get all of the departing trams from this station.
-  trams: [Tram]!
-}
-
-# A Metrolink tram due to arrive at a station.
-type Tram {
-  # The station where the tram is headed.
-  destination: Station
-
-  # Number of minutes until the tram arrives.
-  due: Int
-
-  # The length of the tram in carriages.
-  size: Int
 }
