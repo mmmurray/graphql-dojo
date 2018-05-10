@@ -1,3 +1,4 @@
 {
-  "tfgmBaseUrl": "http://localhost:3002"
+  "tfgmBaseUrl": "http://localhost:3002",
+  "tfgmApiKey": "Get your own API key from https://developer.tfgm.com/"
 }
