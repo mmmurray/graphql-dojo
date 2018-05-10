@@ -81,6 +81,10 @@ As you can see, this API is absolutely horrible any you will need to do some rat
 >
 > * `src/server/resolvers.js`
 
+#### Extra Time 🤓
+
+* Sign up for an API key at https://developer.tfgm.com/ and update `src/server/config.json` to use the real live data instead of the mock data.
+
 ## Exercise 3 - Combining multiple APIs
 
 #### What you need to do 👈
@@ -109,6 +113,17 @@ git checkout ex4
 > * `src/client/components/station-input-loader.js`
 > * `src/client/components/departures-loader.js`
 
+## Homework
+
+If you had fun building this app and want to take it further to learn more about GraphQL, here are some improvement ideas:
+
+* Make the React app live update using GraphQL subscriptions.
+* Optimise data fetching in the resolvers using DataLoader: https://github.com/facebook/dataloader
+* Setup a simple database and add some mutations queries. Perhaps a user can log in to the app and save their usual stations.
+* Try hosting this service on AWS using AppSync which is a fully managed GraphQL service backed by other AWS services.
+* Add a service worker to make the app work offline.
+* Port the app to React Native - the Apollo client support this.
+
 ## Resources
 
 ### GraphQL Cheat Sheet
@@ -125,6 +140,7 @@ https://wehavefaces.net/graphql-shorthand-notation-cheatsheet-17cd715861b6
 * https://github.com/facebook/dataloader
 * https://github.com/graphcool/graphql-playground
 * https://github.com/apollographql/apollo-link-state
+* https://aws.amazon.com/appsync/
 
 ## Attribution
 
