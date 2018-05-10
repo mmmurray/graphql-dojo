@@ -1,5 +1,5 @@
 import nock from 'nock';
-import mockTfgmData from './data/tfgm-mock-data.json';
+import mockTfgmData from '../mock-apis/tfgm/data/metrolinks.json';
 import mockNaptanData from '../mock-apis/naptan/data/stops.json';
 import { tfgmBaseUrl, naptanBaseUrl } from '../src/server/config.json';
 
