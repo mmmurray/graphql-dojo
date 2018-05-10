@@ -2,6 +2,16 @@
   "name": "graphql-dojo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build:server": "babel src/server --out-dir lib --copy-files",
+    "prettier": "prettier --write '{src/**/*,test/**/*,*}.{js,json}'",
+    "start": "npm run build:server && run-p start:*",
+    "start:app": "react-scripts start",
+    "start:server": "nodemon -e js,graphql --watch lib/ ./lib/server.js",
+    "start:server-watch": "npm run build:server -- --watch --skip-initial-build",
+    "start:mock-tfgm": "node ./mock-apis/tfgm/server.js",
+    "test": "jest --watch"
+  },
   "dependencies": {
     "apollo-server-express": "^1.3.6",
     "body-parser": "^1.18.2",
@@ -16,19 +26,12 @@
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4"
   },
-  "scripts": {
-    "build:server": "babel src/server --out-dir lib --copy-files",
-    "prettier": "prettier --write '{src/**/*,test/**/*,*}.{js,json}'",
-    "start": "npm run build:server && run-p start:*",
-    "start:app": "react-scripts start",
-    "start:server": "nodemon -e js,graphql --watch lib/ ./lib/server.js",
-    "start:server-watch": "npm run build:server -- --watch --skip-initial-build",
-    "start:mock-tfgm": "node ./mock-apis/tfgm/server.js"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
     "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.12.1"
