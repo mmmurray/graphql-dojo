@@ -1,19 +1,6 @@
 import { groupBy, uniqBy, isEqual, sortBy } from 'lodash/fp';
 import { fetchTramData } from './fetchers';
 
-const createCarriages = tram =>
-  [tram.Carriages0, tram.Carriages1, tram.Carriages2, tram.Carriages3]
-    .filter(Boolean)
-    .map(size => ({ size }));
-
-const createTram = tram => ({
-  id: tram.Id,
-  line: tram.Line,
-  direction: tram.Direction,
-  station: tram.StationLocation,
-  carriages: createCarriages(tram),
-});
-
 const createStation = data => {
   const trams = [];
 
