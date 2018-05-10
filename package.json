@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build:server": "babel src/server --out-dir lib --copy-files",
+    "prettier": "prettier --write '{src/**/*,test/**/*,*}.{js,json}'",
     "start": "npm run build:server && run-p start:*",
     "start:app": "react-scripts start",
     "start:server": "nodemon -e js,graphql --watch lib/ ./lib/server.js",
@@ -29,6 +30,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "nodemon": "^1.17.3",
-    "npm-run-all": "^4.1.2"
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.12.1"
   }
 }
