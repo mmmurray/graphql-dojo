@@ -25,28 +25,29 @@ const createQuery = station => gql`
   }
 `;
 
-const DeparturesLoader = ({ station }) => (
-  <Query query={createQuery(station)}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return (
-          <Div display="flex" justifyContent="center" paddingTop="32px" width="100%">
-            <CircularProgress />
-          </Div>
-        );
-      }
+const DeparturesLoader = ({ station }) =>
+  station ? (
+    <Query query={createQuery(station)}>
+      {({ loading, error, data }) => {
+        if (loading) {
+          return (
+            <Div display="flex" justifyContent="center" paddingTop="32px" width="100%">
+              <CircularProgress />
+            </Div>
+          );
+        }
 
-      if (error) return <div>Error :(</div>;
+        if (error) return <div>Error :(</div>;
 
-      const trams = data.station.trams.map(tram => ({
-        due: tram.due,
-        destination: tram.destination.name,
-        size: tram.size === 'Double' ? 2 : 1,
-      }));
+        const trams = data.station.trams.map(tram => ({
+          due: tram.due,
+          destination: tram.destination.name,
+          size: tram.size === 'Double' ? 2 : 1,
+        }));
 
-      return <Departures trams={trams} />;
-    }}
-  </Query>
-);
+        return <Departures trams={trams} />;
+      }}
+    </Query>
+  ) : null;
 
 export default DeparturesLoader;
