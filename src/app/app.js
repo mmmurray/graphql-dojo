@@ -1,16 +1,22 @@
+import ApolloClient from 'apollo-boost';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
-import Departures from './components/departures';
+import { ApolloProvider } from 'react-apollo';
+import DeparturesLoader from './components/departures-loader';
+import Layout from './components/layout';
+import StopInput from './components/stop-input';
 
-const trams = [
-  { id: '1', destination: 'MediaCityUK', size: 1, due: 3 },
-  { id: '2', destination: 'Cornbrook', size: 2, due: 12 },
-  { id: '3', destination: 'Eccles', size: 1, due: 25 },
-];
+const client = new ApolloClient({ uri: 'http://localhost:3001/graphql' });
 
-class App extends React.Component {
-  render() {
-    return <Departures trams={trams} />;
-  }
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <MuiThemeProvider>
+      <Layout>
+        <StopInput />
+        <DeparturesLoader station="Piccadilly" />
+      </Layout>
+    </MuiThemeProvider>
+  </ApolloProvider>
+);
 
 export default App;
