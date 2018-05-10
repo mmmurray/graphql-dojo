@@ -1,3 +1,24 @@
+# This file is where you define the schema using the GraphQL Schema Language. Helpful language cheat sheet:
+# https://camo.githubusercontent.com/c7e4c1cb2df6da9e4e5a328ad1e8abdff4a6969b/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a486145656f47726a6132494755787a766d6a35566e772e706e67
+#
+# Requirements for the schema:
+#
+# - I can get a station by name.
+#
+# - For a particular station:
+#    - I can get the name of the station.
+#    - I can get a list of all the trams due to depart from the station.
+#
+# - For each departing tram:
+#    - I can get the size of the tram (Metrolink trams are either Single or Double size).
+#    - I can get the time in minutes when the tram is due to depart from the station.
+#    - I can get the name of the destination station.
+
+# All schemas must define a Query type. GraphQL will use this as the entry point to your schema.
+# type Query {
+#
+# }
+
 type Query {
   station(name: String): Station
 }
@@ -8,7 +29,6 @@ type Station {
 }
 
 type Tram {
-  id: ID
   destination: Station
   due: Int
   size: TramSize
