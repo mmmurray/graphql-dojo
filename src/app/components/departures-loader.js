@@ -55,7 +55,7 @@ const DeparturesLoader = ({ station }) =>
             <Departures trams={trams} />
             <Div widht="100px" height="300px" marginTop="16px">
               <GoogleMapReact
-                defaultCenter={{
+                center={{
                   lat: data.station.location.lat,
                   lng: data.station.location.lon,
                 }}
