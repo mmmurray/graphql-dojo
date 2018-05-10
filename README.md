@@ -2,6 +2,10 @@
 
 In this Dojo we will be building a Metrolink live departures app using GraphQL and React.
 
+> Slides https://docs.google.com/presentation/d/1RSxIgnk0N6gvvrFxJ4oiky34EI4CKT8fbmY5PAC8oRI/edit?usp=sharing
+
+It will use data from the TFGM API: https://developer.tfgm.com/ and the National Public Transport Access Nodes (NaPTAN) data set: https://data.gov.uk/dataset/ff93ffc1-6656-47d8-9155-85ea0b8f2251/national-public-transport-access-nodes-naptan
+
 ![](docs/app-screenshot.png)
 
 ## Setup Instructions
@@ -60,7 +64,7 @@ npm test
 
 There are several tests in `test/exercise-2.test.js` which are failing. Your task for this exercise is simply to make all of the tests pass. You do not need to modify the tests at all. Each test sends a particular query string to the API and expects the resulting JSON object to be a particular value.
 
-To fetch the tram data from the TFGM API, use the `fetchTramData` function in the `src/server/fetchers.js` file. You can look at mock API response by opening `mock-apis/tfgm/data/metrolinks.json`.
+To fetch the tram data from the TFGM API, use the `fetchTramData` function in the `src/server/fetchers.js` file. You can look at the mock API response by opening `mock-apis/tfgm/data/metrolinks.json`.
 
 How the TFGM API works:
 
@@ -87,6 +91,8 @@ As you can see, this API is absolutely horrible any you will need to do some rat
 
 ## Exercise 3 - Combining multiple APIs
 
+We have now seen how GraphQL abstract away the ugliness of a REST API, but we don't need to stop at just the one API. One of GraphQLs superpowers is the ability to combine multiple APIs together in a very efficient way. Lets extend our schema to get the coordinates for each `Station`.
+
 #### What you need to do 👈
 
 ```bash
@@ -95,8 +101,16 @@ git checkout ex3
 npm test
 ```
 
+Just like the last exercise, there are several tests in `test/exercise-3.test.js` which are failing. Your task is once again to make all of the tests pass.
+
+Open the `src/server/types.graphql` file and add a `location` field to the `Station` type that returns a `Location` type with a `latitude` and `longitude` field.
+
+The TFGM API has an `AtcoCode` property for each station. This identifier can be cross referenced with the National Public Transport Access Nodes (NaPTAN) data set to get the coordinates of the station.
+You can get the NaPTAN data set by using the `fetchNaptanData` function in the `src/server/fetchers.js` file. You can look at the mock API response by opening `mock-apis/naptan/data/stops.json`.
+
 > ⚠️ The only files you should need to modify for this exercise are:
 >
+> * `src/server/types.graphql`
 > * `src/server/resolvers.js`
 
 ## Exercise 4 - Integrate with the React app
