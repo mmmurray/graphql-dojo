@@ -1,4 +1,5 @@
 {
   "tfgmBaseUrl": "http://localhost:3002",
-  "tfgmApiKey": "Get your own API key from https://developer.tfgm.com/"
+  "tfgmApiKey": "Get your own API key from https://developer.tfgm.com/",
+  "naptanBaseUrl": "http://localhost:3003"
 }

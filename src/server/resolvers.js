@@ -1,5 +1,5 @@
 import { groupBy, uniqBy, isEqual, sortBy } from 'lodash/fp';
-import { fetchTramData } from './fetchers';
+import { fetchTramData, fetchNaptanData } from './fetchers';
 
 const createStation = data => {
   const trams = [];
@@ -17,7 +17,15 @@ const createStation = data => {
   return {
     name: data.StationLocation,
     trams,
+    _AtcoCode: data.AtcoCode,
   };
+};
+
+const getStations = async () => {
+  const tramData = await fetchTramData();
+  const stations = tramData.value.map(createStation);
+
+  return groupBy('name', stations);
 };
 
 const resolvers = {
@@ -38,6 +46,17 @@ const resolvers = {
       const allTrams = station.reduce((acc, { trams }) => [...acc, ...trams], []);
       const trams = sortBy('due', uniqBy(JSON.stringify, allTrams));
       return trams;
+    },
+    location: async root => {
+      const stations = await getStations();
+      const station = stations[root.name][0];
+      const stops = await fetchNaptanData();
+      const stop = stops.find(stop => stop.ATCOCode === station._AtcoCode);
+
+      return {
+        lat: Number(stop.Longitude),
+        lon: Number(stop.Latitude),
+      };
     },
   },
 };

@@ -1,11 +1,12 @@
 import fetch from 'node-fetch';
-import { tfgmBaseUrl, tfgmApiKey } from './config';
-
-const headers = {
-  'Ocp-Apim-Subscription-Key': tfgmApiKey,
-};
+import { tfgmBaseUrl, tfgmApiKey, naptanBaseUrl } from './config';
 
 const fetchTramData = () =>
-  fetch(`${tfgmBaseUrl}/odata/Metrolinks`, { method: 'GET', headers }).then(res => res.json());
+  fetch(`${tfgmBaseUrl}/odata/Metrolinks`, {
+    method: 'GET',
+    headers: { 'Ocp-Apim-Subscription-Key': tfgmApiKey },
+  }).then(res => res.json());
 
-export { fetchTramData };
+const fetchNaptanData = () => fetch(`${naptanBaseUrl}/stops`).then(res => res.json());
+
+export { fetchTramData, fetchNaptanData };

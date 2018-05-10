@@ -26,6 +26,12 @@ type Query {
 type Station {
   name: String
   trams: [Tram]
+  location: Location
+}
+
+type Location {
+  lat: Float
+  lon: Float
 }
 
 type Tram {
