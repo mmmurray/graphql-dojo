@@ -91,7 +91,7 @@ As you can see, this API is absolutely horrible any you will need to do some rat
 
 ## Exercise 3 - Combining multiple APIs
 
-We have now seen how GraphQL abstract away the ugliness of a REST API, but we don't need to stop at just the one API. One of GraphQLs superpowers is the ability to combine multiple APIs together in a very efficient way. Lets extend our schema to get the coordinates for each `Station`.
+We have now seen how GraphQL can abstract away the ugliness of a REST API, but we don't need to stop at just the one API. One of GraphQLs superpowers is the ability to combine multiple APIs together in a very efficient way. Lets extend our schema to get the coordinates for each `Station`.
 
 #### What you need to do 👈
 
@@ -115,15 +115,25 @@ You can get the NaPTAN data set by using the `fetchNaptanData` function in the `
 
 ## Exercise 4 - Integrate with the React app
 
+Now that we have built a shiny new GraphQL API, lets put it to good use by visualising the data in a React app.
+
 #### What you need to do 👈
 
 ```bash
 git checkout ex4
 ```
 
+There are no tests for the React app. Your task is to modify the app so that it fetches the tram data from the GraphQL API (hosted at http://localhost:3001/graphql - note this is not the same as the GraphiQL URL).
+
+The first thing to do is connect to your API by creating a GraphQL client and making this available to all the other React components by adding a `ApolloProvider`. This paragraph in the docs explain how to do this: https://www.apollographql.com/docs/react/essentials/get-started.html#creating-provider
+
+Next, open up `src/client/components/station-input-loader.js` and delete the hardcoded stations. We are going to build a query using the `gql` function from `apollo-boost`, and fetch the data using the `Query` component from `react-apollo`. Once again, the docs explain how to do this: https://www.apollographql.com/docs/react/essentials/get-started.html#request
+
+Do the same thing in `src/client/components/departures-loader.js` to get the location and departing trams at the selected station.
+
 > ⚠️ The only files you should need to modify for this exercise are:
 >
-> * `src/client/app.js.js`
+> * `src/client/app.js`
 > * `src/client/components/station-input-loader.js`
 > * `src/client/components/departures-loader.js`
 
