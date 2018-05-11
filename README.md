@@ -2,11 +2,13 @@
 
 In this Dojo we will be building a Metrolink live departures app using GraphQL and React.
 
-> Slides https://docs.google.com/presentation/d/1RSxIgnk0N6gvvrFxJ4oiky34EI4CKT8fbmY5PAC8oRI/edit?usp=sharing
-
 It will use data from the TFGM API: https://developer.tfgm.com/ and the National Public Transport Access Nodes (NaPTAN) data set: https://data.gov.uk/dataset/ff93ffc1-6656-47d8-9155-85ea0b8f2251/national-public-transport-access-nodes-naptan
 
 ![](docs/app-screenshot.png)
+
+## Slides
+
+https://docs.google.com/presentation/d/1RSxIgnk0N6gvvrFxJ4oiky34EI4CKT8fbmY5PAC8oRI/edit?usp=sharing
 
 ## Setup Instructions
 
