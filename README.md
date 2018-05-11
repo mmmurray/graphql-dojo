@@ -163,10 +163,13 @@ https://wehavefaces.net/graphql-shorthand-notation-cheatsheet-17cd715861b6
 
 ![](https://cdn-images-1.medium.com/max/2000/1*HaEeoGrja2IGUxzvmj5Vnw.png)
 
+### A better introduction to GraphQL
+
+https://www.youtube.com/watch?v=lAJWHHUz8_8&list=PL0zVEGEvSaeEjIDdbK1KfR7V9XBCVAr0P
+
 ### Further reading
 
-* https://www.youtube.com/watch?v=lAJWHHUz8_8&list=PL0zVEGEvSaeEjIDdbK1KfR7V9XBCVAr0P
-* http://graphql.org/learn/
+* https://graphql.org/learn/
 * https://www.graphql.college/
 * https://github.com/facebook/dataloader
 * https://github.com/graphcool/graphql-playground
